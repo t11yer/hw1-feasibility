@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作业1 · Tesla Roadster 技术/场景/市场可行性 | 飞行汽车技术基础</title>
+<style>
+:root{
+  --navy:#1f3a5f; --navy2:#2e5c8a; --blue:#3b7dd8; --lt:#eef4fb; --lt2:#f7fafd;
+  --ink:#1c2530; --gray:#5b6775; --line:#dde6f0;
+  --red:#c0392b; --amber:#d68910; --green:#1e8449;
+  --redbg:#fdeeec; --amberbg:#fdf6e3; --greenbg:#eafaf1;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.75;font-size:16px}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.hero{background:linear-gradient(135deg,#152b48 0%,#1f3a5f 45%,#2e5c8a 100%);color:#fff;padding:52px 6vw 40px}
+.hero .kicker{font-size:13px;letter-spacing:3px;opacity:.75;text-transform:uppercase}
+.hero h1{margin:10px 0 6px;font-size:34px;line-height:1.3;font-weight:700}
+.hero h1 small{display:block;font-size:18px;font-weight:400;opacity:.85;margin-top:8px}
+.hero .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:14px;opacity:.9}
+.hero .meta span{background:rgba(255,255,255,.12);padding:4px 12px;border-radius:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:26px;max-width:1000px}
+.stat{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:14px 16px}
+.stat b{display:block;font-size:26px;line-height:1.2}
+.stat i{font-style:normal;font-size:12.5px;opacity:.82}
+.wrap{display:grid;grid-template-columns:232px minmax(0,1fr);gap:36px;max-width:1280px;margin:0 auto;padding:30px 28px 80px}
+nav.toc{position:sticky;top:20px;align-self:start;font-size:13.5px;border:1px solid var(--line);border-radius:10px;padding:16px;background:var(--lt2);max-height:88vh;overflow:auto}
+nav.toc h4{margin:0 0 10px;font-size:13px;color:var(--navy);letter-spacing:1px}
+nav.toc ol{margin:0;padding-left:18px}
+nav.toc li{margin:5px 0}
+nav.toc a{color:var(--gray)}
+nav.toc a:hover{color:var(--blue)}
+main{min-width:0}
+section{margin-bottom:44px;scroll-margin-top:16px}
+h2{font-size:23px;color:var(--navy);margin:0 0 14px;padding-bottom:10px;border-bottom:2px solid var(--lt);position:relative}
+h2::before{content:"";position:absolute;left:0;bottom:-2px;width:64px;height:2px;background:var(--blue)}
+h2 .no{color:var(--blue);margin-right:8px}
+h3{font-size:17.5px;color:var(--navy2);margin:24px 0 8px}
+p{margin:10px 0}
+.lead{font-size:16.5px;color:#26313e}
+.muted{color:var(--gray);font-size:14px}
+.callout{border-left:4px solid var(--blue);background:var(--lt);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}
+.callout.warn{border-color:var(--amber);background:var(--amberbg)}
+.callout.crit{border-color:var(--red);background:var(--redbg)}
+.callout.ok{border-color:var(--green);background:var(--greenbg)}
+.callout b{color:var(--navy)}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:14px 0;background:#fff}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:var(--navy);color:#fff;font-weight:600;font-size:13.5px}
+tbody tr:nth-child(even){background:var(--lt2)}
+td.c,th.c{text-align:center}
+.scroll{overflow-x:auto}
+.tag{display:inline-block;font-size:12px;padding:1px 9px;border-radius:12px;font-weight:600;white-space:nowrap}
+.t-red{background:var(--redbg);color:var(--red);border:1px solid #f2c4bd}
+.t-amber{background:var(--amberbg);color:var(--amber);border:1px solid #f3dcae}
+.t-green{background:var(--greenbg);color:var(--green);border:1px solid #b7e0c6}
+.t-blue{background:var(--lt);color:var(--navy2);border:1px solid #c5d8ee}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.card{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:#fff}
+.card h4{margin:0 0 6px;font-size:15.5px;color:var(--navy)}
+.card p{margin:6px 0;font-size:14.5px;color:#2b3542}
+.flow{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--lt2);overflow-x:auto}
+.flow svg{display:block;min-width:720px;width:100%;height:auto}
+.ladder{max-width:760px}
+.ladder td:first-child{font-weight:700;color:var(--navy2);width:150px}
+footer{border-top:1px solid var(--line);background:var(--lt2);padding:26px 6vw;font-size:13px;color:var(--gray)}
+footer b{color:var(--navy)}
+@media(max-width:900px){
+  .wrap{grid-template-columns:1fr;padding:20px 16px 60px}
+  nav.toc{position:static;max-height:none}
+  .hero h1{font-size:25px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="kicker">Fundamentals of Flying Vehicle Technology · 课程作业 1</div>
+  <h1>Tesla Roadster Rocket 全方位调研：技术 · 场景 · 市场可行性
+    <small>一台「能跳起来的跑车」值不值得被当成飞行汽车研究：把演示、工程化、运输化三层拆开看</small>
+  </h1>
+  <div class="meta">
+    <span>课程：飞行汽车技术基础 / Fundamentals of Flying Vehicle Technology</span>
+    <span>研究对象：Tesla 第二代 Roadster · Rocket 版本</span>
+    <span>证据截止：2026-11-26</span>
+    <span>版本：1.0</span>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>10</b><i>环车身冷气推力器（官方披露）</i></div>
+    <div class="stat"><b>≈600 L</b><i>压缩气体储量（媒体报道口径）</i></div>
+    <div class="stat"><b>3</b><i>能力层级：演示 / 工程化 / 运输化</i></div>
+    <div class="stat"><b>2028?</b><i>生产目标，非已验证交付</i></div>
+    <div class="stat"><b>4</b><i>判据：客群、频次、补能、成本</i></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h4>目录 CONTENTS</h4>
+  <ol>
+    <li><a href="#s1">研究设计与证据边界</a></li>
+    <li><a href="#s2">发展路径：九年与一次重置</a></li>
+    <li><a href="#s3">产品定义：一台车三个问题</a></li>
+    <li><a href="#s4">系统架构与关键技术</a></li>
+    <li><a href="#s5">「有限飞行」的物理边界</a></li>
+    <li><a href="#s6">应用场景分析</a></li>
+    <li><a href="#s7">市场可行性</a></li>
+    <li><a href="#s8">竞品与类别比较</a></li>
+    <li><a href="#s9">工程化路线与判据</a></li>
+    <li><a href="#s10">结论</a></li>
+    <li><a href="#refs">参考文献</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="s1">
+  <h2><span class="no">01</span>研究设计与证据边界</h2>
+  <p class="lead">研究对象越有传播冲击力，越需要先划清「我们知道什么」和「我们只是听说什么」。本报告采用系统综述式案例评估：先定问题，再定检索与来源分级，最后才做工程与市场判断。</p>
+
+  <h3>1.1 研究问题与范围</h3>
+  <ul>
+    <li><strong>对象</strong>：Tesla 第二代 Roadster 全车族，重点是单座 Rocket 版本；Performance 与 Thrust 仅作对照。</li>
+    <li><strong>时间范围</strong>：2017 年概念发布 → 2026 年 11 月 26 日。</li>
+    <li><strong>三个问题</strong>：它在物理上做到了什么？这些能力对应哪些真实场景？谁会为它付钱、付多少、能撑起多大规模？</li>
+  </ul>
+
+  <h3>1.2 来源分级规则</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>等级</th><th>含义</th><th>能证明什么</th><th>不能证明什么</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag t-green">A</span> 企业原始披露</td><td>官方视频、X 帖、产品页</td><td>企业「展示了某个行为」「提出了某项指标」</td><td>持续飞行能力、可靠度、量产一致性</td></tr>
+      <tr><td><span class="tag t-blue">B</span> 标准与学术文献</td><td>ISO 标准、监管文件、同行评审论文</td><td>技术机理、合规要求、行业基线</td><td>该产品本身的具体水平</td></tr>
+      <tr><td><span class="tag t-amber">C</span> 媒体交叉核验</td><td>BBC、The Verge、Fortune 等</td><td>演示确实发生、争议点在哪、监管口径</td><td>未经官方确认的性能数字</td></tr>
+      <tr><td><span class="tag t-red">D</span> 排除</td><td>粉丝渲染、AI 生成视频、无出处的高度/续航/价格帖</td><td>—</td><td>一律不作为证据</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout crit">
+    <b>最关键的一条边界：</b>一段公开演示视频能支持的结论只有一句——<strong>「发生了某种受控抬升与姿态响应」</strong>。它不能自动证明飞行包线、安全完整性、可靠度、适航符合性或量产一致性。后文所有判断都在这条线上展开。
+  </div>
+</section>
+
+<section id="s2">
+  <h2><span class="no">02</span>发展路径：九年等待与一次产品叙事重置</h2>
+  <p>2017 年 Roadster 作为 Semi 发布会的「惊喜」亮相，作用是重塑高性能形象；2018 年提出约十个火箭推力器的设想；2020—2025 年多次延期；2026 年 10 月 15 日在得州 Waco 完成有限飞行与姿态演示，并给出 2028 年生产目标。</p>
+
+  <div class="flow">
+  <svg viewBox="0 0 940 120" role="img" aria-label="发展路径时间轴">
+    <line x1="40" y1="62" x2="910" y2="62" stroke="#dde6f0" stroke-width="4"/>
+    <g font-size="13" fill="#1c2530">
+      <circle cx="90" cy="62" r="8" fill="#3b7dd8"/><text x="90" y="40" text-anchor="middle" font-weight="700">2017</text><text x="90" y="88" text-anchor="middle" fill="#5b6775">概念车发布</text>
+      <circle cx="270" cy="62" r="8" fill="#3b7dd8"/><text x="270" y="40" text-anchor="middle" font-weight="700">2018</text><text x="270" y="88" text-anchor="middle" fill="#5b6775">推力器设想</text>
+      <circle cx="470" cy="62" r="8" fill="#d68910"/><text x="470" y="40" text-anchor="middle" font-weight="700">2020–25</text><text x="470" y="88" text-anchor="middle" fill="#5b6775">反复延期与改设计</text>
+      <circle cx="680" cy="62" r="9" fill="#c0392b"/><text x="680" y="40" text-anchor="middle" font-weight="700">2026.10</text><text x="680" y="88" text-anchor="middle" fill="#5b6775">有限飞行演示</text>
+      <circle cx="870" cy="62" r="8" fill="#8fa8c4"/><text x="870" y="40" text-anchor="middle" font-weight="700">2028?</text><text x="870" y="88" text-anchor="middle" fill="#5b6775">生产目标</text>
+    </g>
+  </svg>
+  </div>
+
+  <div class="callout">
+    <b>延期的真正信息量：</b>延期本身不是技术失败的证据，但它说明验证对象变了——从「单个零部件」变成「高压气体 + 推力控制 + 人员安全 + 两套监管」的跨域系统。判断项目是否真有进展，要看它有没有开始公开测试矩阵、飞行包线和监管沟通记录，而不是下一次发布有多震撼。
+  </div>
+</section>
+
+<section id="s3">
+  <h2><span class="no">03</span>产品定义：一台车，三个不同问题</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>版本</th><th>官方定位</th><th class="c">座位</th><th>关键能力</th><th>证据状态</th></tr></thead>
+    <tbody>
+      <tr><td>Performance</td><td>Road ready</td><td class="c">2</td><td>主动空气动力学与多模式吸附系统</td><td><span class="tag t-blue">官方披露</span></td></tr>
+      <tr><td>Thrust</td><td>Race ready</td><td class="c">2</td><td>后置冷气推力器，亚 1 秒零百（宣称）</td><td><span class="tag t-blue">官方披露</span></td></tr>
+      <tr><td>Rocket</td><td>Air ready</td><td class="c">1</td><td>十个环车身冷气推力器 + ≈600 L 压缩气体</td><td><span class="tag t-amber">演示 + 报道</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>三个版本共享一个名字，问题的性质却完全不同：Performance 与 Thrust 是<strong>纵向动力学</strong>问题，Rocket 是<strong>多轴推力分配与姿态控制</strong>问题。把它们统称为「飞行汽车」会掩盖这个差别，也会让后面的市场估算彻底失焦——成本结构、使用场景和监管身份都不同。</p>
+  <div class="callout warn">
+    <b>关于高额定金：</b>定金是需求筛选机制，不是收入，也不等于交付条件已满足。它只能被记为「高支付意愿信号」；真正的转化要看订单数、退款条款、交付承诺与实际交付四项能否对上。
+  </div>
+</section>
+
+<section id="s4">
+  <h2><span class="no">04</span>系统架构与关键技术：难在把火箭硬件塞进车里</h2>
+
+  <div class="flow">
+  <svg viewBox="0 0 900 300" role="img" aria-label="系统架构图">
+    <defs><marker id="ar1" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#5b6775"/></marker></defs>
+    <g font-size="12.5">
+      <rect x="20" y="20" width="190" height="66" rx="9" fill="#eef4fb" stroke="#c5d8ee"/><text x="110" y="45" text-anchor="middle" font-weight="700" fill="#1f3a5f">车辆平台</text><text x="110" y="65" text-anchor="middle" fill="#5b6775">车身 / 底盘 / 空气动力学</text>
+      <rect x="20" y="110" width="190" height="66" rx="9" fill="#eef4fb" stroke="#c5d8ee"/><text x="110" y="135" text-anchor="middle" font-weight="700" fill="#1f3a5f">能源与压力</text><text x="110" y="155" text-anchor="middle" fill="#5b6775">动力电池 / COPV / 热管理</text>
+      <rect x="20" y="200" width="190" height="66" rx="9" fill="#eef4fb" stroke="#c5d8ee"/><text x="110" y="225" text-anchor="middle" font-weight="700" fill="#1f3a5f">推力执行</text><text x="110" y="245" text-anchor="middle" fill="#5b6775">风扇 / 10 推力器 / 阀门喷口</text>
+      <rect x="380" y="110" width="160" height="66" rx="9" fill="#eafaf1" stroke="#b7e0c6"/><text x="460" y="135" text-anchor="middle" font-weight="700" fill="#1e8449">感知与控制</text><text x="460" y="155" text-anchor="middle" fill="#5b6775">姿态估计 / 推力分配</text>
+      <rect x="700" y="20" width="180" height="66" rx="9" fill="#fdf6e3" stroke="#f3dcae"/><text x="790" y="45" text-anchor="middle" font-weight="700" fill="#d68910">道路法规</text><text x="790" y="65" text-anchor="middle" fill="#5b6775">道路准入未获批</text>
+      <rect x="700" y="110" width="180" height="66" rx="9" fill="#fdf6e3" stroke="#f3dcae"/><text x="790" y="135" text-anchor="middle" font-weight="700" fill="#d68910">空域与适航</text><text x="790" y="155" text-anchor="middle" fill="#5b6775">航空器归类未定</text>
+      <rect x="700" y="200" width="180" height="66" rx="9" fill="#fdf6e3" stroke="#f3dcae"/><text x="790" y="225" text-anchor="middle" font-weight="700" fill="#d68910">场地与人员隔离</text><text x="790" y="245" text-anchor="middle" fill="#5b6775">运行许可未完成</text>
+      <line x1="210" y1="53" x2="372" y2="130" stroke="#5b6775" marker-end="url(#ar1)"/>
+      <line x1="210" y1="143" x2="372" y2="143" stroke="#5b6775" marker-end="url(#ar1)"/>
+      <line x1="210" y1="233" x2="372" y2="156" stroke="#5b6775" marker-end="url(#ar1)"/>
+      <line x1="540" y1="130" x2="692" y2="60" stroke="#c0392b" stroke-dasharray="5 4" marker-end="url(#ar1)"/>
+      <line x1="540" y1="143" x2="692" y2="143" stroke="#c0392b" stroke-dasharray="5 4" marker-end="url(#ar1)"/>
+      <line x1="540" y1="156" x2="692" y2="230" stroke="#c0392b" stroke-dasharray="5 4" marker-end="url(#ar1)"/>
+      <text x="600" y="285" text-anchor="middle" fill="#c0392b" font-size="12">虚线：外部约束与车内硬件同等重要，且目前全部未闭合</text>
+    </g>
+  </svg>
+  </div>
+
+  <h3>4.1 冷气推力器：响应快，但能量必须提前存好</h3>
+  <p>它不靠燃烧，而是把预存高压气体经阀门与喷口释放，用反作用力取冲量。优势是响应快、控制粒度细、无持续热负荷、无高温尾焰；根本限制是<strong>能量全部来自事先压缩的气体</strong>，飞行时间与气瓶容积、压力、质量和喷口效率直接耦合。这决定了它天然适合「短时、强脉冲、高动态」，不适合稳定悬停与长距离运输。</p>
+
+  <h3>4.2 COPV：轻量化与安全直接对撞</h3>
+  <p>碳纤维缠绕层承压、内衬保证气密，比强度高，是唯一能在车体空隙里塞进 ≈600 L 储气的方案。代价是失效机理复杂：纤维断裂、基体开裂、界面脱粘、应力破裂、冲击损伤。更麻烦的是环境叠加——石击、涉水、盐雾、路面振动和维修误操作，都不是传统航空气瓶维护程序能自动覆盖的。压力等级、爆破裕度、循环寿命、泄压路径目前<strong>全部未披露</strong>。</p>
+
+  <h3>4.3 十个推力器：难点在分配，不在点火</h3>
+  <p>质心、气动中心、气体消耗、姿态误差和扰动都会改变最优分配；部分推力器失效后还要重新分配并明确降级边界。公开演示能确认「预设轨迹与姿态动作完成」，无法确认闭环抗风、故障重构、传感器交叉校验、卡滞检测与任务中止能力。</p>
+
+  <h3>4.4 风扇与地面效应</h3>
+  <p>视频里同时出现高功率风扇，但推力分配、风扇功率与模式切换逻辑均未公开，因此不能把风扇简单当成垂直升力来源。坡道、越障、旋转动作可能利用了预设机械路径、地面效应和有限高度，<strong>不能直接外推到自由悬停</strong>。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="no">05</span>「有限飞行」的物理边界</h2>
+  <p class="lead">冷气系统的可用时间受制于质量流量与储气总量。估算关系很简单：</p>
+  <div class="callout"><b>Δt ≈ m<sub>gas</sub> / ṁ</b>　总冲量 <b>I ≈ ∫F dt</b>　悬停条件 <b>F<sub>thrust</sub> ≥ mg</b><br>
+  但 m<sub>gas</sub>、ṁ、F 与整车质量分布均未完整公开，所以<strong>本报告只给带假设的数量级区间，不给单点「飞行秒数」</strong>。网上流传的精确时长与高度不应视为官方指标。</div>
+
+  <div class="scroll">
+  <table class="ladder">
+    <thead><tr><th>能力层级</th><th>定义</th><th>2026 公开证据</th><th class="c">判定</th></tr></thead>
+    <tbody>
+      <tr><td>L1 跳越 / 抬升</td><td>短时离地、越障、姿态动作</td><td>官方视频展示</td><td class="c"><span class="tag t-green">已演示</span></td></tr>
+      <tr><td>L2 自稳定悬停</td><td>有扰动下保持姿态并安全落地</td><td>无公开测试</td><td class="c"><span class="tag t-amber">待验证</span></td></tr>
+      <tr><td>L3 工程化重复运行</td><td>可重复、可维护、有明确包线</td><td>无测试矩阵与包线</td><td class="c"><span class="tag t-red">未证明</span></td></tr>
+      <tr><td>L4 交通运输使用</td><td>点对点载人、有运行许可</td><td>归类与许可均未完成</td><td class="c"><span class="tag t-red">未证明</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <b>补气利用率这一刀最致命：</b>气体可从环境空气压缩获得，但涉及压缩机功率、过滤、除湿、温控、气瓶冷却与作业安全。若两次演示之间的准备时间远高于实际飞行时间，商业模式就只能服务于低频事件，无法支撑高频运输。
+  </div>
+</section>
+
+<section id="s6">
+  <h2><span class="no">06</span>应用场景：它适合什么样的「任务」</h2>
+  <div class="grid2">
+    <div class="card"><h4>① 品牌与事件营销 <span class="tag t-green">最匹配</span></h4><p>发布、车展、赛道日、影视与直播。短时高动态、强视觉、低频次，正好落在冷气推进的能力甜区，也是唯一已被证明的场景。</p></div>
+    <div class="card"><h4>② 超高端收藏与展示 <span class="tag t-green">匹配</span></h4><p>收藏者资产 + 场地内体验。使用频次极低，对补气时间不敏感，价格弹性大，与「低频事件」的生理约束相容。</p></div>
+    <div class="card"><h4>③ 赛道与直线加速 <span class="tag t-amber">部分匹配</span></h4><p>更接近 Thrust 版本的定位：用推力强化纵向性能，不出跑道边界，监管与第三方风险相对可控。</p></div>
+    <div class="card"><h4>④ 越障 / 应急跨越 <span class="tag t-amber">概念阶段</span></h4><p>短距跳跃断桥、塌方路段听起来合理，但需要可靠着陆区、 repeats 能力和任务规划，公开证据为零。</p></div>
+    <div class="card"><h4>⑤ 城市通勤 / 空中出租 <span class="tag t-red">不匹配</span></h4><p>冷气储能的能量密度、补气设施密度、噪声频谱与空域许可四重约束同时不成立。这一类任务属于 eVTOL，不属于它。</p></div>
+    <div class="card"><h4>⑥ 物流与载人运输 <span class="tag t-red">不匹配</span></h4><p>单座、≈600 L 储气、无包线、无许可，载荷与利用率都无从谈起。</p></div>
+  </div>
+  <div class="callout">
+    <b>场景判断的一句话：</b>它的能力曲线决定了它是一门<strong>「注意力生意」</strong>而不是<strong>「运力生意」</strong>。凡是需要高频、稳定、按时刻表运行的场景，都不该出现在它的商业计划里。
+  </div>
+</section>
+
+<section id="s7">
+  <h2><span class="no">07</span>市场可行性</h2>
+
+  <h3>7.1 需求侧：谁会买</h3>
+  <ul>
+    <li><strong>核心客群</strong>：极高净值的科技收藏者与品牌拥趸，规模以几十到几百台计，而不是以万辆计。</li>
+    <li><strong>付费动机</strong>：稀缺性 + 话题性 + 技术象征，而非交通效率。这类需求对价格不敏感，对「独特性被稀释」反而敏感。</li>
+    <li><strong>定金的意义</strong>：高额定金筛掉了纯好奇者，但也锁死了上限——它天然只能是低产量产品。</li>
+  </ul>
+
+  <h3>7.2 供给侧：成本要分层算</h3>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>成本层</th><th>构成</th><th>与常规高性能电动车的差别</th></tr></thead>
+    <tbody>
+      <tr><td>车辆平台</td><td>车身、底盘、电驱、电池</td><td>量级相当，但需为压力系统与推力结构让位</td></tr>
+      <tr><td>推力系统</td><td>10 推力器、阀门、喷口、风扇</td><td>新增，且需逐台标定</td></tr>
+      <tr><td>压力系统</td><td>COPV、检测、循环寿命管理、泄压防护</td><td>新增，且带来持续性检验成本</td></tr>
+      <tr><td>控制与软件</td><td>姿态估计、推力分配、降级逻辑</td><td>接近飞控量级的验证投入</td></tr>
+      <tr><td>测试与认证</td><td>地面试验、包线试飞、监管沟通</td><td>最大不确定项，无现成路径可照搬</td></tr>
+      <tr><td>运行支持</td><td>高压补气设施、场地隔离、专职人员</td><td>每台车都需要配套基础设施</td></tr>
+      <tr><td>保险与责任</td><td>机身险、第三方责任、召回准备金</td><td>无精算历史，定价可能极高甚至无承保方</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout crit">
+    <b>市场可行性的核心风险不在售价，而在分母：</b>用「整车售价 × 预定数」算出来的收入，必须先扣掉测试认证、运行支持与保险这三项<strong>随产量摊不薄的固定成本</strong>。产量越低，单台分摊越高——这恰好和「客群只有几百人」叠加成一个自我强化的小规模陷阱。
+  </div>
+
+  <h3>7.3 敏感性：结论会在什么条件下翻转</h3>
+  <ul>
+    <li>若监管给出明确的试验性航空器类别 + 场地豁免路径，认证成本大幅下降 → 小规模生意可成立。</li>
+    <li>若补气时间降到分钟级且设施可移动 → 场景从「事件」扩展到「体验运营」，收入模型改善。</li>
+    <li>若任一事故发生在公众区域 → 整个类别的接受度与保险可得性同时崩塌，这是不可对冲的尾部风险。</li>
+  </ul>
+</section>
+
+<section id="s8">
+  <h2><span class="no">08</span>竞品与类别比较</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>对照对象</th><th>技术路线</th><th>目标场景</th><th>监管路径</th><th>与 Rocket 的关系</th></tr></thead>
+    <tbody>
+      <tr><td>Joby / Archer</td><td>倾转旋翼 eVTOL，分布式电推</td><td>空中出租、航线运营</td><td>FAA powered-lift / EASA SC-VTOL</td><td>完全不同的物种：它们在解运力问题</td></tr>
+      <tr><td>Alef Aeronautics</td><td>隐藏式旋翼 + 道路行驶</td><td>门到门个人飞行</td><td>special light-sport 路径</td><td>最接近「飞行汽车」定义，路线更保守</td></tr>
+      <tr><td>小鹏汇天 AeroHT</td><td>多旋翼 + 陆航分体</td><td>低空观光、体验</td><td>中国适航审定推进中</td><td>用分体规避「一台车两监管」难题</td></tr>
+      <tr><td><strong>Roadster Rocket</strong></td><td><strong>冷气推力 + 风扇，无旋翼</strong></td><td><strong>演示、事件、收藏</strong></td><td><strong>归类未定，双轨均未闭合</strong></td><td><strong>唯一以「受控跳跃」而非「飞行」为能力核心</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>横向比较能看出一件关键事实：<strong>所有奔着运输市场去的产品都选择了旋翼 + 电池的持续升力路线</strong>，因为它们必须解决能量效率问题。Rocket 选冷气，说明它的目标函数里「视觉冲击与瞬时动态」权重高于「航程与利用率」——这不是技术落后，而是产品目标不同。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="no">09</span>工程化路线与四道判据</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>阶段</th><th>必须交付的东西</th><th>判据（缺一不可）</th></tr></thead>
+    <tbody>
+      <tr><td>P1 包线测绘</td><td>不同高度下的姿态控制带宽、稳态误差、着陆冲击数据</td><td>公开可复核的飞行包线，而非剪辑视频</td></tr>
+      <tr><td>P2 重复性与寿命</td><td>推力器循环数、COPV 疲劳与检测规程、补气时间分布</td><td>连续运行统计 + 维护周期明确</td></tr>
+      <tr><td>P3 监管定类</td><td>与 FAA / 地方道路管理机构的沟通记录与归类结论</td><td>先有身份，再有许可</td></tr>
+      <tr><td>P4 运行与安全论证</td><td>场地隔离要求、人员资质、事故响应、保险安排</td><td>地面上的人不被置于非自愿风险中</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout ok">
+    <b>进度判断：</b>P1 尚未公开、P2 无数据、P3 未完成、P4 未启动。2028 年生产目标对应的是<strong>车辆本体</strong>的量产，不是飞行能力的成熟。两者不能互相背书。
+  </div>
+</section>
+
+<section id="s10">
+  <h2><span class="no">10</span>结论</h2>
+  <p class="lead">把三层分开看，结论才站得住：</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>层级</th><th class="c">判定</th><th>依据</th></tr></thead>
+    <tbody>
+      <tr><td>演示可行</td><td class="c"><span class="tag t-green">成立</span></td><td>官方视频 + 独立媒体交叉核验：受控抬升与姿态控制确实发生</td></tr>
+      <tr><td>工程化可行</td><td class="c"><span class="tag t-amber">待验证</span></td><td>无包线、无寿命数据、无补气时间、无测试矩阵</td></tr>
+      <tr><td>运输化可行</td><td class="c"><span class="tag t-red">未证明</span></td><td>能量密度、利用率、噪声、归类与许可四重未解</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <ul>
+    <li><strong>技术层面</strong>：真正值得研究的不是「十个推力器」，而是<strong>冷气推力 + 高压储气 + 道路车辆约束 + 监管空白</strong>如何共同定义一种新的「有限飞行」产品类别。</li>
+    <li><strong>场景层面</strong>：能力曲线指向注意力型场景（事件、展示、收藏），与高频运输场景天然错配。</li>
+    <li><strong>市场层面</strong>：可以成立，但只能是超高端、低产量、高话题性的<strong>情景业务</strong>；测试认证与保险两项固定成本会把它锁在小规模，不可能外推为城市通勤的大众市场。</li>
+    <li><strong>方法层面</strong>：这是本报告最想留下的一条——案例的媒体冲击力越强，越要用证据表把「看到的行为」和「推断的能力」硬性分开。</li>
+  </ul>
+  <div class="callout">
+    <b>与作业 2 的衔接：</b>本报告只回答「它能不能做到、有没有人买」。至于「做到这件事是否足够安全」——ASIL 推演、SOTIF 触发条件、COPV 失效与事故链、适航缺口与安全案例证据矩阵——属于系统安全工程的分析范围，在作业 2（安全专题）中展开。
+  </div>
+</section>
+
+<section id="refs">
+  <h2><span class="no">11</span>参考文献</h2>
+  <p class="muted">只列本报告实际引用的核心来源，按用途分三组。分级：[A] 企业原始披露 · [B] 标准与学术文献 · [C] 媒体交叉核验。安全标准与适航文件（ISO 26262 / 21448 / 34502、SC-VTOL 等）在作业 2 中列出。</p>
+
+  <h3>A. 企业原始披露</h3>
+  <ol class="muted">
+    <li>TESLA. <a href="https://www.youtube.com/watch?v=7p5LxFdc-Qg">The Ramp | Roadster</a>[EB/OL]. YouTube, 2026-10-15.</li>
+    <li>TESLA. <a href="https://x.com/Tesla/status/2110904290743402880">SpaceX has used thrusters to position spacecraft for decades（≈600 L、10 推力器）</a>[EB/OL]. X, 2026-10-16.</li>
+    <li>TESLA. <a href="https://www.tesla.com/roadster">Roadster 官方产品页</a>[EB/OL].</li>
+  </ol>
+
+  <h3>B. 技术、场景与市场基线</h3>
+  <ol class="muted">
+    <li>PAN G, ALOUINI M-S. <strong>Flying Car Transportation System: Advances, Techniques, and Challenges</strong>[J]. IEEE Access, 2021, 9: 24586-24603.</li>
+    <li>AHMED S S, HULME K F, FOUNTAS G, et al. <strong>The Flying Car—Challenges and Strategies Toward Future Adoption</strong>[J]. Frontiers in Built Environment, 2020, 6: 106.</li>
+    <li>RAJASHEKARA K, WANG Q, MATSUSE K. <strong>Flying Cars: Challenges and Propulsion Strategies</strong>[J]. IEEE Electrification Magazine, 2016, 4(1): 46-57.</li>
+    <li>GOODRICH K H, THEODORE C R. <strong>Description of the NASA Urban Air Mobility Maturity Level (UML) Scale</strong>[C]//AIAA Scitech 2021.</li>
+    <li>NAZARI F, NORUZOLIAEE M, NURUL HABIB K. <strong>Assessing public acceptance of urban air mobility: Behavioral insights</strong>[J]. Journal of Air Transport Management, 2026, 131: 102907.</li>
+    <li>中国汽车工程学会. <strong>飞行汽车发展报告 2.0：迈向空地一体交通新时代</strong>[R]. 2026.</li>
+  </ol>
+
+  <h3>C. 媒体交叉核验与竞品对照</h3>
+  <ol class="muted">
+    <li>BBC. <strong>Watch: Did Tesla really just unveil a flying car?</strong>[EB/OL]. 2026-10-16.</li>
+    <li>THE VERGE. <strong>The flying Tesla Roadster is 'not approved for public road use.'</strong>[EB/OL]. 2026-10-15.</li>
+    <li>FORTUNE. <strong>Tesla is taking $250,000 deposits for a Roadster with SpaceX thrusters. The FAA says it isn't an aircraft</strong>[EB/OL]. 2026-10-17.</li>
+    <li>TECHCRUNCH. <strong>Tesla reveals SpaceX-powered Roadster that flies and falls with style</strong>[EB/OL]. 2026-10-15.</li>
+    <li>Joby Aviation. <a href="https://www.jobyaviation.com/technology">Aircraft and Technology</a>[EB/OL]. / Archer. <a href="https://www.archer.com/midnight">Midnight</a>[EB/OL]. / Alef Aeronautics. <a href="https://alef.aero/">Alef Flying Car</a>[EB/OL].</li>
+  </ol>
+
+  <p class="muted" style="margin-top:16px">课程参考页面（含扩展书目全量列表）：<a href="https://lab.autozyx.com/fundamentals-of-flying-vehicle-technology/tesla-flying-roadster/">lab.autozyx.com/fundamentals-of-flying-vehicle-technology/tesla-flying-roadster</a></p>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <p><b>飞行汽车技术基础 · 课程作业 1</b>　Tesla Roadster Rocket 技术 / 场景 / 市场可行性调研　|　方法：系统综述式案例评估（证据分级 + 能力分层 + 敏感性分析）</p>
+  <p>证据截止 2026-11-26。文中数量级估算为作者按公开信息所作推演，不代表 Tesla 官方数据；未公开参数一律标注「未披露 / 待验证」。作业形式：单文件静态网页，入口 index.html，可直接部署至 GitHub Pages（Public 仓库）。</p>
+</footer>
+
+</body>
+</html>
